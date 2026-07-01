@@ -1,0 +1,223 @@
+.glass-panel-shell {
+  position: fixed;
+  right: 2rem;
+  bottom: 2rem;
+  z-index: 50;
+  background: rgba(100, 100, 100, 0.5);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  color: #ffffff;
+  overflow: hidden;
+  transform-origin: bottom right;
+  transition:
+    width 0.5s cubic-bezier(0.32, 0.72, 0, 1),
+    height 0.5s cubic-bezier(0.32, 0.72, 0, 1),
+    border-radius 0.5s cubic-bezier(0.32, 0.72, 0, 1),
+    padding 0.5s cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+.glass-panel-shell.is-expanded {
+  display: flex;
+  flex-direction: column;
+  width: calc(50vw - 3rem);
+  max-width: 520px;
+  height: calc(100vh - 7rem);
+  padding: 0;
+  border-radius: 16px;
+  pointer-events: auto;
+}
+
+.glass-panel-shell.is-expanded.is-compact {
+  width: 300px;
+  max-width: 300px;
+  height: auto;
+  max-height: calc(100vh - 7rem);
+}
+
+.glass-panel-shell.is-minimized {
+  display: inline-flex;
+  align-items: center;
+  width: auto;
+  height: auto;
+  padding: 0.65rem 1.15rem;
+  border-radius: 999px;
+  cursor: pointer;
+  pointer-events: auto;
+}
+
+.glass-panel-shell.is-minimized:hover {
+  background: rgba(120, 120, 120, 0.6);
+}
+
+.glass-panel-minimized-content {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.95rem;
+  font-weight: 400;
+  line-height: 1;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+}
+
+.glass-panel-shell.is-minimized .glass-panel-minimized-content {
+  position: static;
+  opacity: 1;
+  pointer-events: auto;
+  transition-delay: 0.2s;
+}
+
+.glass-panel-expanded-content {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  opacity: 1;
+  pointer-events: auto;
+  transition: opacity 0.25s ease;
+}
+
+.glass-panel-shell.is-minimized .glass-panel-expanded-content {
+  position: absolute;
+  inset: 0;
+  flex: none;
+  opacity: 0;
+  pointer-events: none;
+  transition-delay: 0s;
+}
+
+.glass-panel-shell.is-expanded .glass-panel-minimized-content {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition-delay: 0s;
+}
+
+.glass-panel-shell.is-expanded .glass-panel-expanded-content {
+  opacity: 1;
+  transition-delay: 0.15s;
+}
+
+.glass-panel-body {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.minimize-button {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  width: 32px;
+  height: 32px;
+  border: none;
+  background: rgba(255, 255, 255, 0.15);
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 1.5rem;
+  line-height: 1;
+  cursor: pointer;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition:
+    background 0.2s ease,
+    color 0.2s ease,
+    transform 0.2s ease,
+    opacity 0.2s ease;
+  padding: 0;
+  z-index: 100;
+}
+
+.glass-panel-shell.is-minimized .minimize-button {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.minimize-button:hover {
+  background: rgba(255, 255, 255, 0.25);
+  color: #ffffff;
+  transform: scale(1.1);
+}
+
+.minimize-button:active {
+  transform: scale(0.95);
+}
+
+.content-transition {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.expand-icon {
+  width: 0.55rem;
+  height: 0.55rem;
+  border-right: 1.5px solid rgba(255, 255, 255, 0.85);
+  border-bottom: 1.5px solid rgba(255, 255, 255, 0.85);
+  transform: rotate(-135deg);
+  flex-shrink: 0;
+  transition: transform 0.3s ease;
+}
+
+.glass-panel-shell.is-minimized:hover .expand-icon {
+  transform: rotate(-135deg) translateY(-1px);
+}
+
+@media (max-width: 1024px) {
+  .glass-panel-shell.is-expanded {
+    right: 1.5rem;
+    width: calc(55vw - 2rem);
+    max-width: 480px;
+  }
+
+  .glass-panel-shell.is-expanded.is-compact {
+    width: 280px;
+    max-width: 280px;
+  }
+}
+
+@media (max-width: 768px) {
+  .glass-panel-shell {
+    right: 1rem;
+    bottom: 1rem;
+  }
+
+  .glass-panel-shell.is-expanded {
+    left: 1rem;
+    width: auto;
+    max-width: none;
+    height: calc(100vh - 6rem);
+    max-height: calc(100vh - 6rem);
+  }
+
+  .glass-panel-shell.is-expanded.is-compact {
+    left: auto;
+    width: 260px;
+    max-width: calc(100vw - 2rem);
+    height: auto;
+  }
+}
+
+@media (max-width: 480px) {
+  .glass-panel-shell.is-expanded {
+    height: calc(100vh - 5.5rem);
+    max-height: calc(100vh - 5.5rem);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .glass-panel-shell,
+  .glass-panel-minimized-content,
+  .glass-panel-expanded-content,
+  .expand-icon {
+    transition: none;
+  }
+}

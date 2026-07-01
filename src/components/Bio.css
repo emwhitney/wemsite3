@@ -1,0 +1,102 @@
+.bio-container {
+  padding: 1rem 0;
+  animation: fadeIn 0.6s ease-out;
+}
+
+.section-title {
+  font-size: 2rem;
+  font-weight: 300;
+  margin-bottom: 2rem;
+  color: #ffffff;
+  letter-spacing: 0.05em;
+}
+
+.bio-content {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+
+.bio-intro {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.bio-text {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 1.1rem;
+  line-height: 1.8;
+  margin: 0;
+}
+
+.bio-text strong {
+  color: #ffffff;
+  font-weight: 600;
+}
+
+.bio-skills {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 2rem;
+}
+
+.skills-title {
+  font-size: 1.3rem;
+  font-weight: 500;
+  color: #ffffff;
+  margin: 0 0 1.5rem 0;
+}
+
+.skills-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.skill-tag {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 20px;
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+  cursor: default;
+}
+
+.skill-tag:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.3);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@media (max-width: 768px) {
+  .section-title {
+    font-size: 1.5rem;
+  }
+  
+  .bio-text {
+    font-size: 1rem;
+  }
+  
+  .bio-skills {
+    padding: 1.5rem;
+  }
+  
+  .skills-title {
+    font-size: 1.1rem;
+  }
+}
